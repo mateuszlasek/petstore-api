@@ -38,7 +38,6 @@ class PetController extends Controller
         ]);
 
         $data = [
-            'id' => rand(1, 100000),
             'name' => $request->name,
             'status' => $request->status,
         ];
