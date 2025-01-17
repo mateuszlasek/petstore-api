@@ -1,25 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Pet</title>
-</head>
-<body>
-<h1>Edit Pet</h1>
+@extends('layout')
 
-<form action="{{ route('pets.update', $pet['id']) }}" method="POST">
-    @method('PUT')
-    @csrf
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" value="{{ $pet['name'] }}" required>
-    <br>
+@section('title', 'Edit Pet')
 
-    <label for="status">Status:</label>
-    <input type="text" id="status" name="status" value="{{ $pet['status'] }}" required>
-    <br>
+@section('content')
+    <h1>Edit Pet</h1>
 
-    <button type="submit">Update Pet</button>
-</form>
-</body>
-</html>
+    <form action="{{ route('pets.update', $pet['id']) }}" method="POST" class="mt-4">
+        @csrf
+        @method('PUT')
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ $pet['name'] }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select id="status" name="status" class="form-select" required>
+                <option value="available" {{ $pet['status'] == 'available' ? 'selected' : '' }}>Available</option>
+                <option value="pending" {{ $pet['status'] == 'pending' ? 'selected' : '' }}>Pending</option>
+                <option value="sold" {{ $pet['status'] == 'sold' ? 'selected' : '' }}>Sold</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-warning">Update Pet</button>
+    </form>
+@endsection
