@@ -7,11 +7,7 @@ use Illuminate\Support\Facades\Log;
 
 class ApiService
 {
-    private $apiUrl;
-    public function __construct()
-    {
-        $this->apiUrl = 'https://petstore.swagger.io/v2';
-    }
+    private $apiUrl = 'https://petstore.swagger.io/v2';
 
     public function findPetsByStatus(string $status = 'available'): ?array
     {
