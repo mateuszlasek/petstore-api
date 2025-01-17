@@ -14,7 +14,7 @@ class PetController extends Controller
 
     public function index()
     {
-        $pets = $this->apiService->findPetsByStatus('available');
+        $pets = $this->apiService->findPetsByStatus();
 
         if (is_null($pets)) {
             return redirect()->route('pets.index')->withErrors(['error' => 'Failed to fetch pets.']);
